@@ -30,7 +30,10 @@ export default function AudioPlayer(props) {
     }, [props.music]);
     useEffect(() => {
         const interval = setInterval(() => {
-            isPlaying && setCurrentTime(audioRef.current.currentTime);
+            if (isPlaying) {
+                setCurrentTime(audioRef.current.currentTime);
+                // props?.onTimeChange(audioRef.current.currentTime);
+            }
         },500);
 
         return () => clearInterval(interval)
